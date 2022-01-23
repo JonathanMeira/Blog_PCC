@@ -11,6 +11,14 @@
     }
 </style>
 
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -23,6 +31,9 @@
                         <div class="user-links">
                             {{$users->links()}}
                         </div>
+                        <a href="{{ route('user.create') }}">
+                            <p>{{ __('Criar novo usuario') }}</p>
+                        </a>
                     <div class="table-responsive">
                       <table class="table tablesorter " id="">
                         <thead class=" text-primary">
@@ -64,7 +75,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        Teste
+                                        <a href="{{route('user.edit', $user->id)}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{{route('user.delete', $user->id)}}">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
