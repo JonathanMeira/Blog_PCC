@@ -64,7 +64,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         Category::destroy($id);
-        return redirect()->back()->with('success', 'Usuario '. $id . 'deletado com sucesso');       
+        return redirect()->back()->with('success', 'Categoria '. $id . ' deletada com sucesso.');       
     }
 
 }

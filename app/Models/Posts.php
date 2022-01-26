@@ -11,13 +11,17 @@ class Posts extends Model
 
     protected $fillable = [
         'title',
-        'likes',
-        'dislikes',
         'description',
         'created_at',
         'updated_at',
-        'user_id'
+        'user_id',
+        'photo_id',
+        'lead'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 }
