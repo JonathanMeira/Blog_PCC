@@ -56,13 +56,7 @@ class UserController extends Controller
         $data->password = Hash::make($data->password);
         $data->save();
 
-        //--- Redirect Section
-
-        // $msg = __('Novo usuario criado com sucesso.') . '<a href="' . route('user.index') . '">' . __('Ver lista de usuarios.') . '</a>';
-        // return response()->json($msg);
-
-        return view('users.create');
-        //--- Redirect Section Ends    
+        return redirect('user')->with('success', 'Novo usuario criado com sucesso.');  
     }
 
     public function edit($id)
@@ -77,7 +71,7 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
 
-        return view('users.edit', compact('user'));
+        return redirect('user')->with('success', 'Usuario editado com sucesso.');  
     }
 
     public function password(PasswordRequest $request, $id)
@@ -91,6 +85,6 @@ class UserController extends Controller
     public function delete($id)
     {
         User::destroy($id);
-        return redirect()->back()->with('success', 'Usuario '. $id . 'deletado com sucesso');       
+        return redirect()->back()->with('success', 'Usuario '. $id . ' deletado com sucesso');       
     }
 }

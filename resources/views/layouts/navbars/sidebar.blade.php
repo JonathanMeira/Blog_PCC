@@ -1,8 +1,8 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-mini">{{ __('PFC') }}</a>
-            <a href="#" class="simple-text logo-normal">{{ __('Insira nome') }}</a>
+            <a href="{{ route('home')}}" class="simple-text logo-mini">{{ __('PFC') }}</a>
+            <a href="{{ route('home')}}" class="simple-text logo-normal">{{ __('Insira nome') }}</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
@@ -37,7 +37,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
-                    <i class="fa fa-list-alt"></i>
+                    <i class="tim-icons icon-caps-small"></i>
                     <span class="nav-link-text" >{{ __('Categorias') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
@@ -61,7 +61,7 @@
             </li>
             <li>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
-                    <i class="fa fa-list-alt"></i>
+                    <i class="tim-icons icon-paper"></i>
                     <span class="nav-link-text" >{{ __('Posts') }}</span>
                     <b class="caret mt-1"></b>
                 </a>

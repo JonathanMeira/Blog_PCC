@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
         //--- Redirect Section
 
-        return view('categories.create');
+        return redirect('category')->with('success', 'Nova categoria criada com sucesso.');  
         //--- Redirect Section Ends    
     }
 
@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $category->fill($request->all());
         $category->save();
 
-        return view('categories.edit', compact('category'));
+        return redirect('category')->with('success', 'Categoria editada com sucesso.'); 
     }
 
     public function delete($id)
