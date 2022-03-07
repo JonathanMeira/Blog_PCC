@@ -7,7 +7,7 @@
                 <div class="card-header ">
                     <div class="row">
                         <div class="col-sm-6 text-left">
-                            <h5 class="card-category">Total Shipments</h5>
+                            <h5 class="card-category">Total posts</h5>
                             <h2 class="card-title">Performance</h2>
                         </div>
                         <div class="col-sm-6">

@@ -424,7 +424,7 @@ demo = {
 
 
     var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
+    var chart_data = [200, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
 
 
     var ctx = document.getElementById("chartBig1").getContext('2d');

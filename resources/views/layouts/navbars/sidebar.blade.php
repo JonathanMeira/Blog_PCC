@@ -83,7 +83,7 @@
                     </ul>
                 </div>
             </li>
-            <li @if ($pageSlug == 'notifications') class="active " @endif>
+            {{-- <li @if ($pageSlug == 'notifications') class="active " @endif>
                 <a href="{{ route('pages.notifications') }}">
                     <i class="tim-icons icon-bell-55"></i>
                     <p>{{ __('Notifications') }}</p>
@@ -106,7 +106,7 @@
                     <i class="tim-icons icon-world"></i>
                     <p>{{ __('RTL Support') }}</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

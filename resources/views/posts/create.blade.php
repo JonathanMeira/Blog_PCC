@@ -46,8 +46,11 @@
                             <i class="tim-icons icon-single-02"></i>
                         </div>
                     </div>
-                    <input type="text" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Descrição') }}">
+                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
+                        Descrição 
+                    </textarea>
                     @include('alerts.feedback', ['field' => 'description'])
+                    
                 </div>
             </div>
             <div class="card-footer">
