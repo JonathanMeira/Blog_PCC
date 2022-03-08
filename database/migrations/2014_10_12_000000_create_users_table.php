@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('photo')->nullable()->default(null);
-            $table->integer('user_type')->default(1);
+            $table->string('role')->default('client');
         });
     }
 
