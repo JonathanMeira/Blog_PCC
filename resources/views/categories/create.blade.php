@@ -1,7 +1,15 @@
-@extends('layouts.app', ['page' => __('Categories'), 'pageSlug' => 'categories'])
+@extends('layouts.app', ['page' => __('Categories'), 'pageSlug' => 'create.category'])
 
 
 @section('content')
+
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
 
 <div class="col-md-8">
     <div class="card">

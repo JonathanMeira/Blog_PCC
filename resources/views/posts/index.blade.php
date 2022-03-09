@@ -1,8 +1,7 @@
-@extends('layouts.app', ['page' => __('Categories'), 'pageSlug' => 'categories'])
+@extends('layouts.app', ['page' => __('Posts'), 'pageSlug' => 'posts'])
 
 
 @section('content')
-
 @if (\Session::has('success'))
 <div class="alert alert-success">
     <ul>
@@ -13,11 +12,11 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card ">
+        <div class="card">
             <div class="card-header">
-                <span class="h2 card-title col-md-9"> Categorias</span>
-                <a class="btn btn-simple col-md-3" href="{{ route('category.create')}}">
-                    <p>{{ __('Criar nova categoria') }}</p>
+                <span class="h2 card-title col-9"> Posts</span>
+                <a class="btn btn-simple col-md-3" href="{{ route('post.create')}}">
+                    <p>{{ __('Criar novo post') }}</p>
                 </a>
             </div>
             <div class="card-body">
@@ -29,7 +28,10 @@
                                     Id
                                 </th>
                                 <th>
-                                    Nome
+                                    Titulo
+                                </th>
+                                <th>
+                                    Usuario
                                 </th>
                                 <th>
                                     Opções
@@ -37,20 +39,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($posts as $post)
                             <tr>
                                 <td>
-                                    {{$category->id}}
+                                    {{$post->id}}
                                 </td>
                                 <td>
-                                    {{$category->name}}
+                                    {{$post->title}}
                                 </td>
                                 <td>
-                                    <a href="{{route('category.edit', $category->id)}}">
-                                        <i class="fas fa-edit fa-lg"></i>
+                                    {{$post->user()->name}}
+                                </td>
+                                <td>
+                                    <a href="{{route('post.edit', $post->id)}}">
+                                        <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{route('category.delete', $category->id)}}">
-                                        <i class="fa fa-trash fa-lg"></i>
+                                    <a href="{{route('post.delete', $post->id)}}">
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -60,7 +65,7 @@
                 </div>
             </div>
             <div class="user-links">
-                {{$categories->links()}}
+                {{$posts->links()}}
             </div>
         </div>
     </div>
