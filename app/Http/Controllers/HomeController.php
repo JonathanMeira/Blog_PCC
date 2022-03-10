@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Posts;
 
 class HomeController extends Controller
 {
@@ -11,7 +12,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'can:accessAdmin']);
     }
 
     /**
@@ -19,8 +20,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Posts $model)
     {
-        return view('dashboard');
+        return view('posts.index', ['posts' => $model->simplePaginate(15)]);
     }
 }

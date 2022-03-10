@@ -70,7 +70,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h5 class="title">{{ __('Editar usuario: '. $user->name. ' ID: '. $user->id) }}</h5>
+                <h5 class="title">{{ __('Editar usuario: '. $user->name) }}</h5>
             </div>
             <form method="post" action="{{ route('user.update', $user->id) }}" autocomplete="off">
                 <div class="card-body">
