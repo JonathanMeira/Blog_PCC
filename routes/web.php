@@ -43,9 +43,10 @@ Route::prefix('user')
 ->middleware('auth')
 ->group( function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+
 });
 
-Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 
 Route::prefix('author')
   ->middleware(['auth', 'can:accessAuthor'])
@@ -59,7 +60,6 @@ Route::prefix('author')
 	Route::get('post/edit/{id}', ['as' => 'post.edit', 'uses' => 'App\Http\Controllers\PostController@edit']);
 	Route::get('post/delete/{id}', ['as' => 'post.delete', 'uses' => 'App\Http\Controllers\PostController@delete']);
 	Route::put('profile/password/{id}', ['as' => 'user.password', 'uses' => 'App\Http\Controllers\UserController@password']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::resource("category", "App\Http\Controllers\CategoryController");
 	Route::resource("post", "App\Http\Controllers\PostController");

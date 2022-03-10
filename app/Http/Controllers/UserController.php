@@ -71,18 +71,20 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         //Todo: arrumar o update porque ele não editando o super admin
-        $data = $request;
 
-        unset($data->is_super);
-        $data->role = 'author';
+        unset($request->is_super);
+        $data['role'] = 'author';
         if($request->is_super == "on"){
-            $data->role = 'admin';
+            $data['role'] = 'admin';
         }
-
-        $user->fill($data->all());
+        
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        
+        $user->fill($data);
         $user->save();
 
-        return redirect('admin/user')->with('success', 'Usuario editado com sucesso.');  
+        return redirect()->route('user.edit', $id)->with('success', 'Usuario editado com sucesso.');  
     }
 
     public function password(PasswordRequest $request, $id)
