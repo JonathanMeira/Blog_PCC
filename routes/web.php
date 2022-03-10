@@ -12,12 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\BlogController@index']);
 
 Auth::routes();
             
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
@@ -49,7 +48,7 @@ Route::prefix('user')
 
 
 Route::prefix('author')
-  ->middleware(['auth', 'can:accessAuthor'])
+  ->middleware(['auth', 'can:accessAdminAuthor'])
   ->group( function () {
 	Route::get('category', ['as' => 'category.index', 'uses' => 'App\Http\Controllers\CategoryController@index']);
 	Route::get('category/create', ['as' => 'category.create', 'uses' => 'App\Http\Controllers\CategoryController@create']);
@@ -67,4 +66,3 @@ Route::prefix('author')
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
