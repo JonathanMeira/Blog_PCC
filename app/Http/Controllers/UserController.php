@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -49,14 +50,14 @@ class UserController extends Controller
         $data->email_verified_at = now();
         $data->fill($request->all());
         unset($data->is_super);
-        $data->user_type = 1;
+        $data->role = 'author';
         if($request->is_super == "on"){
-            $data->user_type = 0;
+            $data->role = 'admin';
         }
         $data->password = Hash::make($data->password);
         $data->save();
 
-        return redirect('user')->with('success', 'Novo usuario criado com sucesso.');  
+        return redirect('admin/user')->with('success', 'Novo usuario criado com sucesso.');  
     }
 
     public function edit($id)
@@ -68,10 +69,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->fill($request->all());
+
+        //Todo: arrumar o update porque ele não editando o super admin
+        $data = $request;
+
+        unset($data->is_super);
+        $data->role = 'author';
+        if($request->is_super == "on"){
+            $data->role = 'admin';
+        }
+
+        $user->fill($data->all());
         $user->save();
 
-        return redirect('user')->with('success', 'Usuario editado com sucesso.');  
+        return redirect('admin/user')->with('success', 'Usuario editado com sucesso.');  
     }
 
     public function password(PasswordRequest $request, $id)
