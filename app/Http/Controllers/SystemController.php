@@ -31,9 +31,11 @@ class SystemController extends Controller
             unlink(public_path('storage/system/' . $currentlogo));
         }
 
-        $name = Str::random(16) . "." . $logo->getClientOriginalExtension();
-        $logo->move(public_path('storage/system/'), $name);
-        $data['logo'] = $name;
+        if(isset($request->logo)){
+            $name = Str::random(16) . "." . $logo->getClientOriginalExtension();
+            $logo->move(public_path('storage/system/'), $name);
+            $data['logo'] = $name;
+        }
         
         $system->update($data);
 
