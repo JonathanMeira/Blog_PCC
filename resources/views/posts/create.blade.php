@@ -1,5 +1,6 @@
 @extends('layouts.app', ['page' => __('Posts'), 'pageSlug' => 'create.post'])
 
+@include('ckfinder::setup')
 
 @section('content')
 
@@ -41,30 +42,14 @@
                     @include('alerts.feedback', ['field' => 'lead'])
                 </div> 
                 <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                </div> 
                         
-                        <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
-            
+                    <textarea id="wysiwyg-editor" name="wysiwyg-editor" class="CKEDITOR" ></textarea>
 
-                        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-                                $('.ckeditor').ckeditor();
-                            });
-                        </script>
-                        <script type="text/javascript">
-                            CKEDITOR.replace('wysiwyg-editor', {
-                                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                                filebrowserUploadMethod: 'form'
-                            });
-                        </script>   
-                        
-
-                        </html>
+                    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+                    <script>
+                         var editor = CKEDITOR.replace('wysiwyg-editor')
+                         CKFinder.setupCKEditor( editor );
+                    </script>   
                     
                     @include('alerts.feedback', ['field' => 'description'])
                     
