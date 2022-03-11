@@ -82,7 +82,13 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('storage/users/'.auth()->user()->photo) }}" alt="">
+                                <img class="avatar" 
+                                @if (auth()->user()->photo == null)
+                                    src="{{asset('assets/img/noimage.jpg')}}"
+                                @else 
+                                    src="{{ asset('storage/users/'.auth()->user()->photo)}}"
+                                @endif
+                                >
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                         </div>
