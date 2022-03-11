@@ -32,10 +32,12 @@ Route::prefix('admin')
   ->middleware(['auth', 'can:accessAdmin'])
   ->group( function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+	Route::resource('system', 'App\Http\Controllers\SystemController', ['except' => ['show']]);
 	Route::get('user', ['as' => 'user.index', 'uses' => 'App\Http\Controllers\UserController@index']);
 	Route::get('user/create', ['as' => 'user.create', 'uses' => 'App\Http\Controllers\UserController@create']);
 	Route::get('user/edit/{id}', ['as' => 'user.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
 	Route::get('user/delete/{id}', ['as' => 'user.delete', 'uses' => 'App\Http\Controllers\UserController@delete']);
+	Route::get('system/edit', ['as' => 'system.edit', 'uses' => 'App\Http\Controllers\SystemController@edit']);
 });
 
 Route::prefix('user')

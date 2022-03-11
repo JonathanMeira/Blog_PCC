@@ -76,6 +76,23 @@
                     </ul>
                 </div>
             </li>
+            <li @if (auth()->user()->role != 'admin') class="d-none" @endif>
+                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                    <i class="fa fa-cog"></i>
+                    <span class="nav-link-text" >{{ __('Sistema') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse show" id="laravel-examples">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug == 'system.edit') class="active " @endif>
+                            <a href="{{ route('system.edit')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>{{ __('Editar sistema') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
