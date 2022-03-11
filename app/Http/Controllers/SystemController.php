@@ -20,8 +20,8 @@ class SystemController extends Controller
     public function update(Request $request, $id)
     {
         $system = System::find(1);
-        $data['name'] = $request->name;
-        $data['color'] = $request->color;
+        $data['name'] = $request->name ?? $system->name;
+        $data['color'] = $request->color ?? $system->color;
 
         $logo = $request->file('logo');
 
