@@ -2,7 +2,7 @@
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="{{ route('home')}}" class="simple-text logo-mini">{{ __('PFC') }}</a>
-            <a href="{{ route('home')}}" class="simple-text logo-normal">{{ __('Insira nome') }}</a>
+            <a href="{{ route('home')}}" class="simple-text logo-normal">{{ __($system->name) }}</a>
         </div>
         <ul class="nav">
             <li @if ($pageSlug == 'profile') class="active " @endif>
