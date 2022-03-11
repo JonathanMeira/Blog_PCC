@@ -83,7 +83,7 @@
                             <div class="block block-four"></div>
                             <a href="#">
                                 <img class="avatar" 
-                                @if (auth()->user()->photo == null)
+                                @if (auth()->user()->photo == null || auth()->user()->photo == "noimage.jpg")
                                     src="{{asset('assets/img/noimage.jpg')}}"
                                 @else 
                                     src="{{ asset('storage/users/'.auth()->user()->photo)}}"
