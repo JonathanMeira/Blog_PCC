@@ -45,10 +45,27 @@
                         <div class="input-group-text">
                             <i class="tim-icons icon-single-02"></i>
                         </div>
-                    </div>
-                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
-                        Descrição 
-                    </textarea>
+                </div> 
+                        
+                        <textarea class="ckeditor form-control" name="wysiwyg-editor"></textarea>
+            
+
+                        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('.ckeditor').ckeditor();
+                            });
+                        </script>
+                        <script type="text/javascript">
+                            CKEDITOR.replace('wysiwyg-editor', {
+                                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+                                filebrowserUploadMethod: 'form'
+                            });
+                        </script>   
+                        
+
+                        </html>
+                    
                     @include('alerts.feedback', ['field' => 'description'])
                     
                 </div>
