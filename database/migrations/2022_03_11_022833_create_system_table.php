@@ -15,9 +15,9 @@ class CreateSystemTable extends Migration
     {
         Schema::create('system', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('color');
-            $table->string('logo');
+            $table->string('name')->nullable();
+            $table->string('color')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
