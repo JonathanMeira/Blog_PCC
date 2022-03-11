@@ -5,21 +5,20 @@
             <a href="{{ route('home')}}" class="simple-text logo-normal">{{ __('Insira nome') }}</a>
         </div>
         <ul class="nav">
-            <li>
+            <li @if ($pageSlug == 'profile') class="active " @endif>
+                <a href="{{ route('profile.edit')  }}">
+                    <i class="tim-icons icon-single-02"></i>
+                    <p>{{ __('Meu perfil') }}</p>
+                </a>
+            </li>
+            <li @if (auth()->user()->role != 'admin') class="d-none" @endif>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="fas fa-users"></i>
                     <span class="nav-link-text" >{{ __('Usuários') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-
                 <div class="collapse show" id="laravel-examples">
                     <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'profile') class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{ __('Meu perfil') }}</p>
-                            </a>
-                        </li>
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('user.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
@@ -29,7 +28,7 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li @if (auth()->user()->role != 'admin' && auth()->user()->role != 'author') class="d-none" @endif>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="tim-icons icon-paper"></i>
                     <span class="nav-link-text" >{{ __('Posts') }}</span>
@@ -53,7 +52,7 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <li @if (auth()->user()->role != 'admin' && auth()->user()->role != 'author') class="d-none" @endif>
                 <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
                     <i class="tim-icons icon-caps-small"></i>
                     <span class="nav-link-text" >{{ __('Categorias') }}</span>
