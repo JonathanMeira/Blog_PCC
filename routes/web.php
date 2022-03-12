@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\BlogController@index']);
-
+Route::get('/layouts', ['as' => 'layouts', 'uses' => 'App\Http\Controllers\LayoutsController@index']);
 Auth::routes();
             
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
