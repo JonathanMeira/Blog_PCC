@@ -8,37 +8,35 @@ CKEDITOR.editorConfig = function(config) {
     // For complete reference see:
     // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
+    config.skin = 'moonocolor';
+
     // The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbarGroups = [
+        { name: 'document', groups: ['mode', 'doctools', 'document'] },
         { name: 'clipboard', groups: ['clipboard', 'undo'] },
-        { name: 'editing', groups: ['find', 'selection', 'spellchecker'] },
-        { name: 'links' },
-        { name: 'insert' },
-        { name: 'forms' },
-        { name: 'tools' },
-        { name: 'document', groups: ['mode', 'document', 'doctools'] },
-        { name: 'others' },
+        { name: 'editing', groups: ['find', 'selection', 'spellchecker', 'editing'] },
+        { name: 'tools', groups: ['tools'] },
         '/',
+        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph'] },
+        { name: 'forms', groups: ['forms'] },
         { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
-        { name: 'styles' },
-        { name: 'colors' },
-        { name: 'about' }
+        { name: 'colors', groups: ['colors'] },
+        { name: 'insert', groups: ['insert'] },
+        { name: 'links', groups: ['links'] },
+        { name: 'styles', groups: ['styles'] },
+        //{ name: 'others', groups: [ 'others' ] },
+        //{ name: 'about', groups: [ 'about' ] },
     ];
-
 
     config.removePlugins = 'resize';
     config.language = 'pt-br';
-    config.uiColor = '#E14ECA';
-    config.resize_dir = 'both';
-    config.width = 1000;
+    config.width = 765;
     config.height = 550;
-
 
 
     // Remove some buttons provided by the standard plugins, which are
     // not needed in the Standard(s) toolbar.
-    config.removeButtons = 'Underline,Subscript,Superscript';
+    //config.removeButtons = 'Underline,Subscript,Superscript';
 
     // Set the most common block elements.
     config.format_tags = 'p;h1;h2;h3;pre';
