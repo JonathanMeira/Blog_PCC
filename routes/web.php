@@ -19,24 +19,16 @@ Route::get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\BlogController
 Auth::routes();
             
 
-Route::group(['middleware' => 'auth'], function () {
-		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
-		Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
-		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
-		Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
-		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
-		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
-});
-
 Route::prefix('admin')
   ->middleware(['auth', 'can:accessAdmin'])
   ->group( function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+	Route::resource('system', 'App\Http\Controllers\SystemController', ['except' => ['show']]);
 	Route::get('user', ['as' => 'user.index', 'uses' => 'App\Http\Controllers\UserController@index']);
 	Route::get('user/create', ['as' => 'user.create', 'uses' => 'App\Http\Controllers\UserController@create']);
 	Route::get('user/edit/{id}', ['as' => 'user.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
 	Route::get('user/delete/{id}', ['as' => 'user.delete', 'uses' => 'App\Http\Controllers\UserController@delete']);
+	Route::get('system/edit', ['as' => 'system.edit', 'uses' => 'App\Http\Controllers\SystemController@edit']);
 });
 
 Route::prefix('user')

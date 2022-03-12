@@ -44,16 +44,17 @@ class UserController extends Controller
         }
         //--- Validation Section Ends
 
-
         $data = new User();
-
         $data->email_verified_at = now();
         $data->fill($request->all());
+        
         unset($data->is_super);
-        $data->role = 'author';
-        if($request->is_super == "on"){
-            $data->role = 'admin';
-        }
+        unset($data->is_author);
+
+        $role = $this -> validateCheckbox($request);
+        
+        $data->role = $role;
+
         $data->password = Hash::make($data->password);
         $data->save();
 
@@ -70,22 +71,36 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        //Todo: arrumar o update porque ele não editando o super admin
+        $role = $this -> validateCheckbox($request);
 
-        unset($request->is_super);
-        $data['role'] = 'author';
-        if($request->is_super == "on"){
-            $data['role'] = 'admin';
+        if ($role == null) 
+        {
+            $data['role'] = $user->role;
+        }else
+        {
+            $data['role'] = $role;
         }
-        
+
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         
         $user->fill($data);
         $user->save();
 
-        return redirect()->route('user.edit', $id)->with('success', 'Usuario editado com sucesso.');  
+        return redirect()->route('user.index')->with('success', 'Usuario editado com sucesso.');  
     }
+
+    private function validateCheckbox(Request $request)
+    {
+        if($request->is_super == "on"){
+            return 'admin';
+        }
+        elseif($request->is_author == "on"){
+            return 'author';
+        }
+        return 'client';
+    }
+
 
     public function password(PasswordRequest $request, $id)
     {

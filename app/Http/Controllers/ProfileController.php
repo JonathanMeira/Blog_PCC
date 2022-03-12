@@ -35,13 +35,13 @@ class ProfileController extends Controller
         # Delete old avatar if exists
         $user =  User::find (auth()->user()->id);
         $currentavatar = $user->photo;
-        if ($currentavatar && file_exists(public_path('assets/img/users/' . $currentavatar))) {
+        if ($currentavatar && file_exists(public_path('storage/users/' . $currentavatar))) {
             Storage::delete($currentavatar);
-            unlink(public_path('assets/img/users/' . $currentavatar));
+            unlink(public_path('storage/users/' . $currentavatar));
         }
 
         $name = Str::random(16) . "." . $avatar->getClientOriginalExtension();
-        $avatar->move(public_path('assets/img/users/'), $name);
+        $avatar->move(public_path('storage/users/'), $name);
         $data['photo'] = $name;
         
         auth()->user()->update($request->all());

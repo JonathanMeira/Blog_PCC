@@ -25,11 +25,13 @@
                                 <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}">
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
-                            <label for="avatar">Alterar foto de perfil:</label>
-
-                            <input type="file"
-                                id="avatar" name="avatar"
-                                accept="image/png, image/jpeg, image/jpg, image/gif">
+                            <label class ="btn btn-default"for="avatar">Alterar foto de perfil</label>
+                            <input 
+                                class="d-none"
+                                type="file"
+                                id="avatar" 
+                                name="avatar"
+                                accept="image/png, image/jpeg, image/jpg, image/gif"/>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ __('Salvar') }}</button>
@@ -80,7 +82,13 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('assets/img/users/'.auth()->user()->photo) }}" alt="">
+                                <img class="avatar" 
+                                @if (auth()->user()->photo == null || auth()->user()->photo == "noimage.jpg")
+                                    src="{{asset('assets/img/noimage.jpg')}}"
+                                @else 
+                                    src="{{ asset('storage/users/'.auth()->user()->photo)}}"
+                                @endif
+                                >
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                         </div>

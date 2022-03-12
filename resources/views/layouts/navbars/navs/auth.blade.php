@@ -20,7 +20,13 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <div class="photo">
-                            <img src="{{ asset('assets/img/users/'.auth()->user()->photo) }}" alt="{{ __('Profile Photo') }}">
+                            <img 
+                            @if (auth()->user()->photo == null || auth()->user()->photo == "noimage.jpg")
+                            src="{{asset('assets/img/noimage.jpg')}}"
+                        @else 
+                            src="{{ asset('storage/users/'.auth()->user()->photo)}}"
+                        @endif
+                         alt="{{ __('Profile Photo') }}">
                         </div>
                         <b class="caret d-none d-lg-block d-xl-block"></b>
                         <p class="d-lg-none">{{ __('Sair') }}</p>
