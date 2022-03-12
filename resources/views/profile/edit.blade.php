@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <h5 class="title">{{ __('Editar perfil') }}</h5>
                 </div>
-                <form method="post" action="{{ route('profile.update') }}" autocomplete="off">
+                <form method="post" action="{{ route('profile.update') }}" autocomplete="off" enctype="multipart/form-data">
                     <div class="card-body">
                             @csrf
                             @method('put')
@@ -25,6 +25,13 @@
                                 <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}">
                                 @include('alerts.feedback', ['field' => 'email'])
                             </div>
+                            <label class ="btn btn-default"for="avatar">Alterar foto de perfil</label>
+                            <input 
+                                class="d-none"
+                                type="file"
+                                id="avatar" 
+                                name="avatar"
+                                accept="image/png, image/jpeg, image/jpg, image/gif"/>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-fill btn-primary">{{ __('Salvar') }}</button>
@@ -75,7 +82,13 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('black') }}/img/emilyz.jpg" alt="">
+                                <img class="avatar" 
+                                @if (auth()->user()->photo == null || auth()->user()->photo == "noimage.jpg")
+                                    src="{{asset('assets/img/noimage.jpg')}}"
+                                @else 
+                                    src="{{ asset('storage/users/'.auth()->user()->photo)}}"
+                                @endif
+                                >
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                         </div>

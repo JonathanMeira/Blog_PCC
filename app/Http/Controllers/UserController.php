@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -43,20 +44,21 @@ class UserController extends Controller
         }
         //--- Validation Section Ends
 
-
         $data = new User();
-
         $data->email_verified_at = now();
         $data->fill($request->all());
+        
         unset($data->is_super);
-        $data->user_type = 1;
-        if($request->is_super == "on"){
-            $data->user_type = 0;
-        }
+        unset($data->is_author);
+
+        $role = $this -> validateCheckbox($request);
+        
+        $data->role = $role;
+
         $data->password = Hash::make($data->password);
         $data->save();
 
-        return redirect('user')->with('success', 'Novo usuario criado com sucesso.');  
+        return redirect('admin/user')->with('success', 'Novo usuario criado com sucesso.');  
     }
 
     public function edit($id)
@@ -68,11 +70,37 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->fill($request->all());
+
+        $role = $this -> validateCheckbox($request);
+
+        if ($role == null) 
+        {
+            $data['role'] = $user->role;
+        }else
+        {
+            $data['role'] = $role;
+        }
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        
+        $user->fill($data);
         $user->save();
 
-        return redirect('user')->with('success', 'Usuario editado com sucesso.');  
+        return redirect()->route('user.index')->with('success', 'Usuario editado com sucesso.');  
     }
+
+    private function validateCheckbox(Request $request)
+    {
+        if($request->is_super == "on"){
+            return 'admin';
+        }
+        elseif($request->is_author == "on"){
+            return 'author';
+        }
+        return 'client';
+    }
+
 
     public function password(PasswordRequest $request, $id)
     {

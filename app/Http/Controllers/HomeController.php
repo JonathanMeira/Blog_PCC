@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'can:accessAdmin']);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -22,6 +22,10 @@ class HomeController extends Controller
      */
     public function index(Posts $model)
     {
+        if(auth()->user()->role == 'client'){
+            return view('profile.edit');
+        }
+
         return view('posts.index', ['posts' => $model->simplePaginate(15)]);
     }
 }

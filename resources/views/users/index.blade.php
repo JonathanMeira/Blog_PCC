@@ -63,7 +63,7 @@
                                     {{$user->email}}
                                 </td>
                                 <td class="text-center">
-                                    @if($user->user_type == 0)
+                                    @if($user->role == 'admin')
                                     Sim
                                     @else
                                     Não

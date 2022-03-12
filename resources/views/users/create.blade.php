@@ -115,8 +115,17 @@
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="is_super">
+                        <input class="form-check-input" type="checkbox" name="is_super"/>
                         Super admin?
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="is_author"/>
+                        Publicador?
                         <span class="form-check-sign">
                             <span class="check"></span>
                         </span>

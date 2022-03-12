@@ -90,14 +90,19 @@
                         <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email address') }}" value="{{ old('email', $user->email) }}">
                         @include('alerts.feedback', ['field' => 'email'])
                     </div>
-
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="is_super"value="{{$user->user_type}}" @if($user->user_type == 0)
-                            checked
-                            @endif
-                            >
+                            <input class="form-check-input" type="checkbox" name="is_super"  @if($user->role == 'admin') checked @endif/>
                             Super admin?
+                            <span class="form-check-sign" for="admin">
+                                <span class="check"></span>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="is_author" @if($user->role == 'author' || $user->role == 'admin') checked @endif/>
+                            Publicador?
                             <span class="form-check-sign">
                                 <span class="check"></span>
                             </span>
