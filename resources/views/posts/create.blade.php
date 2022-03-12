@@ -43,11 +43,11 @@
                 </div> 
                 <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                         
-                    <textarea id="wysiwyg-editor" name="wysiwyg-editor" class="CKEDITOR" ></textarea>
+                    <textarea id="description" name="description" class="CKEDITOR" ></textarea>
 
                     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
                     <script>
-                         var editor = CKEDITOR.replace('wysiwyg-editor')
+                         var editor = CKEDITOR.replace('description')
                          CKFinder.setupCKEditor( editor );
                     </script>   
                     
