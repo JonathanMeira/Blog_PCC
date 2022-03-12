@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function(config) {
     // For complete reference see:
     // https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
 
-    config.skin = 'moonocolor';
+    config.skin = 'moono-lisa';
 
     // The toolbar groups arrangement, optimized for two toolbar rows.
     config.toolbarGroups = [
@@ -30,8 +30,8 @@ CKEDITOR.editorConfig = function(config) {
 
     config.removePlugins = 'resize';
     config.language = 'pt-br';
-    config.width = 765;
-    config.height = 550;
+    config.height = 500;
+    config.uiColor = '#525f7f';
 
 
     // Remove some buttons provided by the standard plugins, which are

@@ -83,7 +83,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     border: 1px solid #e14eca;
     border-radius: 5px;
     padding: 0;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .15)
+    box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+    width: 1200;
 }
 
 .cke_inner {
