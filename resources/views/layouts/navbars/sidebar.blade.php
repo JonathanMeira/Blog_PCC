@@ -8,16 +8,17 @@
             <li @if ($pageSlug == 'profile') class="active " @endif>
                 <a href="{{ route('profile.edit')  }}">
                     <i class="tim-icons icon-single-02"></i>
-                    <p>{{ __('Meu perfil') }}</p>
+                    <p>{{
+                        __('Meu perfil') }}</p>
                 </a>
             </li>
             <li @if (auth()->user()->role != 'admin') class="d-none" @endif>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                <a data-toggle="collapse" href="#usuarios" aria-expanded="false">
                     <i class="fas fa-users"></i>
                     <span class="nav-link-text" >{{ __('Usuários') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="laravel-examples">
+                <div class="collapse hidden" id="usuarios">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug == 'users') class="active " @endif>
                             <a href="{{ route('user.index')  }}">
@@ -29,13 +30,13 @@
                 </div>
             </li>
             <li @if (auth()->user()->role != 'admin' && auth()->user()->role != 'author') class="d-none" @endif>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                <a data-toggle="collapse" href="#post" aria-expanded="false">
                     <i class="tim-icons icon-paper"></i>
                     <span class="nav-link-text" >{{ __('Posts') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
 
-                <div class="collapse show" id="laravel-examples">
+                <div class="collapse hidden" id="post">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug == 'posts') class="active " @endif>
                             <a href="{{ route('post.index')  }}">
@@ -53,13 +54,13 @@
                 </div>
             </li>
             <li @if (auth()->user()->role != 'admin' && auth()->user()->role != 'author') class="d-none" @endif>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                <a data-toggle="collapse" href="#categorias" aria-expanded="false">
                     <i class="tim-icons icon-caps-small"></i>
                     <span class="nav-link-text" >{{ __('Categorias') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
 
-                <div class="collapse show" id="laravel-examples">
+                <div class="collapse hidden" id="categorias">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug == 'categories') class="active " @endif>
                             <a href="{{ route('category.index')  }}">
@@ -77,12 +78,12 @@
                 </div>
             </li>
             <li @if (auth()->user()->role != 'admin') class="d-none" @endif>
-                <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
+                <a data-toggle="collapse" href="#sistema" aria-expanded="false">
                     <i class="fa fa-cog"></i>
                     <span class="nav-link-text" >{{ __('Sistema') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="laravel-examples">
+                <div class="collapse hidden" id="sistema">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug == 'system.edit') class="active " @endif>
                             <a href="{{ route('system.edit')  }}">
