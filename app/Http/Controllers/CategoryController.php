@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
         //--- Redirect Section
 
-        return redirect('category')->with('success', 'Nova categoria criada com sucesso.');  
+        return back()->with('success', 'Nova categoria criada com sucesso.');  
         //--- Redirect Section Ends    
     }
 
