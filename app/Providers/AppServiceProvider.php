@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             $system = System::find(1);
             if(isset($system) && !is_null($system)){
                 config()->set('app.name', $system->name);
+                config()->set('app.logo', $system->logo);
                 View::share('system',$system);
             }
         }
