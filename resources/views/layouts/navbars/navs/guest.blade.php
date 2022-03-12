@@ -18,8 +18,8 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link text-primary">
-                        <i class="tim-icons icon-minimal-left"></i> {{ __('Voltar ao painel') }}
+                    <a href="{{ route('index') }}" class="nav-link text-primary">
+                        <i class="fa fa-home"></i> {{ __('Home') }}
                     </a>
                 </li>
                 <li class="nav-item ">

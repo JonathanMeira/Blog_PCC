@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'login-page', 'page' => __('Página de login'), 'contentClass' => 'login-page'])
+@extends('layouts.app', ['class' => 'login-page', 'contentClass' => 'login-page'])
 
 @section('content')
 <style>
@@ -11,9 +11,6 @@
     
 </style>
 
-    <div class="col-md-10 text-center ml-auto mr-auto">
-        <h3 class="mb-5">{{__('Faça login!')}}</h3>
-    </div>
     <div class="col-lg-4 col-md-6 ml-auto mr-auto">
         <form class="form" method="post" action="{{ route('login') }}">
             @csrf

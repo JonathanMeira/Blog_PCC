@@ -1,6 +1,5 @@
 @extends('layouts.app', ['page' => __('Posts'), 'pageSlug' => 'create.post'])
 
-@include('ckfinder::setup')
 
 @section('content')
 
