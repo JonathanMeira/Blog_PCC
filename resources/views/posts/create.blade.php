@@ -1,5 +1,6 @@
 @extends('layouts.app', ['page' => __('Posts'), 'pageSlug' => 'create.post'])
 
+@include('ckfinder::setup')
 
 @section('content')
 
@@ -41,14 +42,15 @@
                     @include('alerts.feedback', ['field' => 'lead'])
                 </div> 
                 <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
-                    <textarea name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}">
-                        Descrição 
-                    </textarea>
+                        
+                    <textarea id="description" name="description" class="CKEDITOR" ></textarea>
+
+                    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+                    <script>
+                         var editor = CKEDITOR.replace('description')
+                         CKFinder.setupCKEditor( editor );
+                    </script>   
+                    
                     @include('alerts.feedback', ['field' => 'description'])
                     
                 </div>
