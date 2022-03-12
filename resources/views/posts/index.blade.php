@@ -8,8 +8,8 @@
         <li>{!! \Session::get('success') !!}</li>
     </ul>
 </div>
-@endif
 
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -48,7 +48,7 @@
                                     {{$post->title}}
                                 </td>
                                 <td>
-                                    {{$post->user()->name}}
+                                    {{$post->user->name}}
                                 </td>
                                 <td>
                                     <a href="{{route('post.edit', $post->id)}}">

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Posts extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -16,7 +17,8 @@ class Posts extends Model
         'updated_at',
         'user_id',
         'photo_id',
-        'lead'
+        'lead',
+        'category_id'
     ];
 
     public function user()

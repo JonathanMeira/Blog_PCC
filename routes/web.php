@@ -56,7 +56,7 @@ Route::prefix('author')
 	Route::put('profile/password/{id}', ['as' => 'user.password', 'uses' => 'App\Http\Controllers\UserController@password']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::resource("category", "App\Http\Controllers\CategoryController");
-	Route::resource("post", "App\Http\Controllers\PostController");
+	Route::resource("post", "App\Http\Controllers\PostController", ['except' => ['show']]);
 });
 
 Auth::routes();

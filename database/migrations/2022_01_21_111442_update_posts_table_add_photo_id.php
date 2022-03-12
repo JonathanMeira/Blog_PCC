@@ -14,7 +14,7 @@ class UpdatePostsTableAddPhotoId extends Migration
     public function up()
     {
         Schema::table('posts', function($table) {
-            $table->bigInteger('photo_id')->unsigned();
+            $table->bigInteger('photo_id')->unsigned()->nullable();
             $table->foreign('photo_id')->references('id')->on('images');
         });
     }

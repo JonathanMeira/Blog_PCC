@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('lead');
             $table->bigInteger('category_id')->unsigned();
+            $table->softDeletes();
         });
 
         Schema::table('posts', function($table) {

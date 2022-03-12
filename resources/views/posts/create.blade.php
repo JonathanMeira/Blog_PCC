@@ -28,7 +28,7 @@
                             <i class="tim-icons icon-single-02"></i>
                         </div>
                     </div>
-                    <input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Titulo') }}">
+                    <input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Titulo') }}" required>
                     @include('alerts.feedback', ['field' => 'title'])
                 </div>
                 <div class="input-group{{ $errors->has('lead') ? ' has-danger' : '' }}">
@@ -37,12 +37,26 @@
                             <i class="tim-icons icon-single-02"></i>
                         </div>
                     </div>
-                    <input type="text" name="lead" class="form-control{{ $errors->has('lead') ? ' is-invalid' : '' }}" placeholder="{{ __('Lead') }}">
+                    <input type="text" name="lead" class="form-control{{ $errors->has('lead') ? ' is-invalid' : '' }}" placeholder="{{ __('Lead') }}" required>
                     @include('alerts.feedback', ['field' => 'lead'])
+                </div> 
+                <div class="input-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="tim-icons icon-single-02"></i>
+                        </div>
+                    </div>
+                    <select name="category_id" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" placeholder="{{ __('Categoria') }}" required>
+                        <option value=""> Selecione... </option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id}}"> {{$category->name }}</option>
+                        @endforeach
+                    </select>
+                    @include('alerts.feedback', ['field' => 'category_id'])
                 </div> 
                 <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                         
-                    <textarea id="description" name="description" class="CKEDITOR" ></textarea>
+                    <textarea id="description" name="description" class="CKEDITOR" required></textarea>
 
                     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
                     <script>
