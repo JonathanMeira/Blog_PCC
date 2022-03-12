@@ -33,8 +33,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
+                            <a href="{{ route('index') }}" class = "nav-item dropdown-item">
+                            <i class="fa fa-home"></i>
+                                {{ __('Home') }}
+                            </a>
+                        </li>                        
+                        <li class="nav-link">
                             <a href="{{ route('logout') }}" class = "nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">
-                                {{ __('Sair') }}
+                            {{ __('Sair') }}
                             </a>
                         </li>
                     </ul>

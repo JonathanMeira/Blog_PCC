@@ -59,7 +59,7 @@
                         <div class="list-unstyled topbar-right">
                             <ul class="topbar-link">
 
-                                <li><a href="{{route('login')}}" title="">Login / Register</a></li>
+                                <li><a href="{{route('login')}}" title="">Login / Registrar</a></li>
                             </ul>
                         </div>
                     </div>
