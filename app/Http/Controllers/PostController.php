@@ -11,7 +11,10 @@ class PostController extends Controller
 {
     public function index(Posts $model)
     {
-        return view('posts.index', ['posts' => $model->simplePaginate(15)]);
+        if(auth()->user()->role == 'admin')
+            return view('posts.index', ['posts' => $model->simplePaginate(15)]);
+        $posts = auth()->user()->posts();
+        return view('posts.index', ['posts' => $posts->simplePaginate(15)]);
     }
 
     public function create()
@@ -39,6 +42,10 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $post = Posts::find($id);
+
+        if(auth()->user()->id != $post->id && auth()->user()->role =='author')
+            return redirect()->back()->with('errors', 'Não é possível editar uma postagem que não é sua');
+
         return view('posts.edit', compact('categories', 'post'));
     }
 
