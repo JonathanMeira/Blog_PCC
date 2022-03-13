@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\BlogController@index']);
-Route::get('/article-details', ['as' => 'article-details', 'uses' => 'App\Http\Controllers\DetailsController@index']);
+Route::get('/{id}', ['as' => 'article-details', 'uses' => 'App\Http\Controllers\DetailsController@index']);
 Route::get('/category', ['as' => 'category', 'uses' => 'App\Http\Controllers\CategoryPageController@index']);
-
 
 Auth::routes();
             

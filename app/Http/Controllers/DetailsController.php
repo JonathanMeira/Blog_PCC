@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class DetailsController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $posts = Posts::all();
-        return view('layouts.article-details',compact('posts'));
+        $post = Posts::find($id);
+        return view('layouts.article-details',compact('post'));
     }
+
 }
