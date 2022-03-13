@@ -3,6 +3,8 @@
 @section('title', config('app.name'))
 
 @section('content')
+
+@if($latestPost != null)
 <!-- Popular news -->
 <section>
     <!-- Popular news  header-->
@@ -747,4 +749,9 @@
     </div>
 </section>
 <!-- End Popular news category -->
+@else
+<div style="height: 75.3vh;">   
+</div>
+@endif
+
 @endsection
