@@ -104,9 +104,11 @@
                                     Home
                                 </a>
                             </li>
-                            <li class="nav-item dropdown has-megamenu">
-                                <a class="nav-link" href="#"> Fazer Loop de categoria aqui</a>
-                            </li>
+                            @foreach($categories as $category)
+                                <li class="nav-item dropdown has-megamenu">
+                                    <a class="nav-link" href="#{{$category->name}}"> {{$category->name}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
             </nav>

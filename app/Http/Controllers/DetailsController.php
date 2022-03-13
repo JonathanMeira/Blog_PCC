@@ -15,9 +15,10 @@ class DetailsController extends Controller
         $posts = Posts::all();
         $post = Posts::find($id);
         $user = User::findOrFail($post->user_id);
+        $categories= Category::all();
         $category = Category::findOrFail($post->category_id);
         $comments = Commentary::where('post_id', $id)->get();
-        return view('layouts.article-details',compact('post','user', 'category', 'comments', 'posts'));
+        return view('layouts.article-details',compact('post','user', 'category', 'comments', 'posts', 'categories'));
     }
 
 }

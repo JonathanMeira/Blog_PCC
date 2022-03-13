@@ -30,7 +30,13 @@
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <figure class="image-profile">
-                                    <img src="images/placeholder/logo.jpg" alt="">
+                                    <img 
+                                    @if ($user->photo == null || $user == "noimage.jpg")
+                                        src="{{asset('assets/img/noimage.jpg')}}"
+                                    @else
+                                        src="{{ asset('storage/users/'.$user->photo)}}"
+                                    @endif
+                                >
                                 </figure>
                             </li>
                             <li class="list-inline-item">
@@ -173,7 +179,7 @@
 
                     <div class="related-article">
                         <h4>
-                            Sujestões com base no que você vê
+                            Sugestões com base no que você vê
                         </h4>
                         <div class="article__entry-carousel-three">
                         @foreach($posts as $p)
@@ -185,7 +191,14 @@
                                 <div class="article__entry">
                                     <div class="article__image">
                                         <a href="/article/{{$p->id}}">
-                                            <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
+                                            <img 
+                                            class="img-fluid"
+                                            @if ($p->photo == null || $p->photo == "noimage.jpg")
+                                            src="{{asset('assets/img/noimage.jpg')}}"
+                                            @else
+                                            src="{{ asset('storage/posts/'.$p->photo)}}"
+                                            @endif
+                                            >
                                         </a>
                                     </div>
                                     <div class="article__content">
@@ -202,7 +215,7 @@
                                             </li>
                                         </ul>
                                         <h5>
-                                            <a href="#">
+                                            <a href="/article/{{$p->id}}">
                                                 {{$p->lead}}
                                             </a>
                                         </h5>
