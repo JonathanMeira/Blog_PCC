@@ -4,13 +4,21 @@
 @section('content')
 @include('ckfinder::setup')
 
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+
     <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">{{ __('Editar post: '. $post->title. ' ID: '. $post->id) }}</h5>
                 </div>
-                <form method="post" action="{{ route('post.update', $post->id) }}" autocomplete="off">
+                <form method="post" action="{{ route('post.update', $post->id) }}" autocomplete="off" enctype="multipart/form-data">
                     <div class="card-body">
                             @csrf
                             @method('put')
@@ -37,6 +45,13 @@
                                 </select>
                                 @include('alerts.feedback', ['field' => 'category_id'])
                             </div> 
+                            <label class ="btn btn-default"for="photo">Enviar foto principal do post</label>
+                            <input 
+                                class="d-none"
+                                type="file"
+                                id="photo" 
+                                name="photo"
+                                accept="image/png, image/jpeg, image/jpg, image/gif"/>
                             <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                     
                                 <textarea id="description" name="description" class="CKEDITOR" required> {{$post->description}}</textarea>

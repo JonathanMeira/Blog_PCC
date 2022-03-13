@@ -18,7 +18,7 @@
         <div class="card-header">
             <h5 class="title">{{ __('Criar post') }}</h5>
         </div>
-        <form method="post" action="{{ route('post.store') }}" autocomplete="off">
+        <form method="post" action="{{ route('post.store') }}" autocomplete="off" enctype="multipart/form-data">
             <div class="card-body">
                 @csrf
 
@@ -56,6 +56,13 @@
                     </select>
                     @include('alerts.feedback', ['field' => 'category_id'])
                 </div> 
+                <label class ="btn btn-default"for="photo">Enviar foto principal do post</label>
+                            <input 
+                                class="d-none"
+                                type="file"
+                                id="photo" 
+                                name="photo"
+                                accept="image/png, image/jpeg, image/jpg, image/gif"/>
                 <div class="input-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                         
                     <textarea id="description" name="description" class="CKEDITOR" required></textarea>

@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Posts;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -33,6 +35,14 @@ class PostController extends Controller
         $data['description'] = $request->description;
         $data['user_id'] = auth()->user()->id;
 
+        $photo = $request->file('photo');
+
+        if($photo){    
+            $name = Str::random(16) . "." . $photo->getClientOriginalExtension();
+            $photo->move(public_path('storage/posts/'), $name);
+            $data['photo'] = $name;
+        }
+        
         Posts::create($data);
 
         return back()->withSuccess('Post criado com sucesso.');
@@ -58,6 +68,21 @@ class PostController extends Controller
         $data['category_id'] = (int)$request->category_id ?? $post->category_id;
         $data['description'] = $request->description ?? $post->description;
         $data['user_id'] = $post->user_id;
+
+        $photo = $request->file('photo');
+
+        if($photo){
+            # Delete old photo if exists
+            $currentphoto = $post->photo;
+            if ($currentphoto && file_exists(public_path('storage/posts/' . $currentphoto))) {
+                Storage::delete($currentphoto);
+                unlink(public_path('storage/posts/' . $currentphoto));
+            }
+
+            $name = Str::random(16) . "." . $photo->getClientOriginalExtension();
+            $photo->move(public_path('storage/posts/'), $name);
+            $data['photo'] = $name;
+        }
 
         $post->update($data);
 
