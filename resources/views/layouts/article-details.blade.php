@@ -65,7 +65,7 @@
                     <div class="blog-tags">
                         <ul class="list-inline">
                             <li class="list-inline-item">
-                                <i class="fa fa-tags">
+                                <i class="fa fa-tags" style="color:black">
                                 </i>
                             </li>
                             <li class="list-inline-item">
