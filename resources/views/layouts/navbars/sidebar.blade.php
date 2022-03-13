@@ -44,12 +44,6 @@
                                 <p>{{ __('Gerenciar posts') }}</p>
                             </a>
                         </li>
-                        <li @if ($pageSlug == 'create.post') class="active " @endif>
-                            <a href="{{ route('post.create')  }}">
-                                <i class="fas fa-pencil-alt"></i>
-                                <p>{{ __('Criar post') }}</p>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>

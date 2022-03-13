@@ -17,6 +17,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        if($categories->ToArray() < array(0))
+            return redirect()->back()->with('errors', 'Não é possível criar uma postagem sem antes houver uma categoria');
         return view('posts.create', compact('categories'));
     }
 

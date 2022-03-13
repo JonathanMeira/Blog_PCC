@@ -8,8 +8,17 @@
         <li>{!! \Session::get('success') !!}</li>
     </ul>
 </div>
-
 @endif
+
+@if (\Session::has('errors'))
+<div class="alert alert-danger">
+    <ul>
+        <li>{!! \Session::get('errors') !!}</li>
+    </ul>
+</div>
+@endif
+
+
 <div class="row">
     <div class="col-12">
         <div class="card">
