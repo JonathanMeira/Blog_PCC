@@ -4,6 +4,13 @@
 
 @section('content')
 <section class="pb-80">
+    @if (\Session::has('error'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{!! \Session::get('error') !!}</li>
+        </ul>
+    </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -131,10 +138,18 @@
                                 </aside>
                             </li>
                         </ol>
-                        <div class="comment-respond">
+                        <div class="comment-respond" id='commentary'>
                             <h3 class="comment-reply-title">Leave a Reply</h3>
-
-                            <form class="comment-form">
+                            @if (\Session::has('success'))
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li>{!! \Session::get('success') !!}</li>
+                                </ul>
+                            </div>
+                            @endif
+                             <form class="comment-form" method="post" action="{{ route('commentary.store', $post->id) }}" autocomplete="off">
+                                @csrf
+                                
                                 <p class="comment-notes">
                                     <span id="email-notes">Your email address will not be published.</span>
                                     Required fields are marked
