@@ -3,6 +3,8 @@
 
 @section('content')
 
+@include('ckfinder::setup')
+
 @if (\Session::has('success'))
     <div class="alert alert-success">
         <ul>
