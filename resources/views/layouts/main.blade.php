@@ -54,19 +54,30 @@
         <div class="topbar d-none d-sm-block" style="background-color: {{config('app.color')}}">
             <div class="container p-3">
                 <div class="row">
-                    <div class="col-md-5">
+                <div class="col-md-2">
+                        <div class="topbar-left">
+                            <div class="topbar-text" style="display: flex; justify-content: end;">
+                            @if(config('app.logo') == null || config('app.logo')== 'noimage.jpg')
+                                <img src="{{asset('assets/img/noimage.jpg')}}" style="max-height: 52px;">
+                            @else
+                                <img src="{{asset('storage/system/'. config('app.logo'))}}" style="max-height: 52px;">
+                            @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5"  style="display: flex; align-items: center; justify-content: start;">
                         <div class="topbar-left">
                             <div class="topbar-text">
-                                <text class ="h4">
+                            <text class ="h5">
                                     {{now()->format('d/m/Y')}}
                                 </text>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-5" style="display: flex; align-items: center; justify-content: end;">
                         <div class="topbar-left">
                                 <div class="a topbar-text">
-                                    <a class ="text h4 d-flex flex-row-reverse" href="{{route('login')}}">
+                                    <a class ="text h5 d-flex flex-row-reverse" href="{{route('login')}}" style="margin: 0;">
                                     @if(auth()->user())
                                             Acessar painel
                                         @else
