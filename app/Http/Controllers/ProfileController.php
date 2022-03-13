@@ -31,18 +31,20 @@ class ProfileController extends Controller
     {
 
         $avatar = $request->file('avatar');
+        
+        if($avatar){
+            # Delete old avatar if exists
+            $user =  User::find (auth()->user()->id);
+            $currentavatar = $user->photo;
+            if ($currentavatar && file_exists(public_path('storage/users/' . $currentavatar))) {
+                Storage::delete($currentavatar);
+                unlink(public_path('storage/users/' . $currentavatar));
+            }
 
-        # Delete old avatar if exists
-        $user =  User::find (auth()->user()->id);
-        $currentavatar = $user->photo;
-        if ($currentavatar && file_exists(public_path('storage/users/' . $currentavatar))) {
-            Storage::delete($currentavatar);
-            unlink(public_path('storage/users/' . $currentavatar));
+            $name = Str::random(16) . "." . $avatar->getClientOriginalExtension();
+            $avatar->move(public_path('storage/users/'), $name);
+            $data['photo'] = $name;
         }
-
-        $name = Str::random(16) . "." . $avatar->getClientOriginalExtension();
-        $avatar->move(public_path('storage/users/'), $name);
-        $data['photo'] = $name;
         
         auth()->user()->update($request->all());
         auth()->user()->update($data);

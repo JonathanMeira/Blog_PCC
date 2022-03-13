@@ -16,9 +16,9 @@ class Posts extends Model
         'created_at',
         'updated_at',
         'user_id',
-        'photo_id',
         'lead',
-        'category_id'
+        'category_id',
+        'photo'
     ];
 
     public function user()
