@@ -12,10 +12,10 @@
                 <div class="wrap__article-detail">
                     <div class="wrap__article-detail-title">
                         <h1>
-                            These Are the 5 Big Tech Stories to Watch in 2017
+                            {{$post->title}}
                         </h1>
                         <h3>
-                            lead aqui
+                            {{$post->lead}}
                         </h3>
                     </div>
                     <hr>
@@ -29,26 +29,21 @@
                             <li class="list-inline-item">
 
                                 <span>
-                                    by
+                                    Por
                                 </span>
-                                <a href="#">
-                                    john doe,
-                                </a>
+                                <span>
+                                    {{$user->name}}
+                                </span>
                             </li>
                             <li class="list-inline-item">
                                 <span class="text-dark text-capitalize ml-1">
-                                    descember 09, 2016
+                                    {{$post->created_at->format('d/m/Y')}}
                                 </span>
                             </li>
                             <li class="list-inline-item">
-                                <span class="text-dark text-capitalize">
-                                    in
+                                <span>
+                                  {{$category->name}}
                                 </span>
-                                <a href="#">
-                                    business
-                                </a>
-
-
                             </li>
                         </ul>
                     </div>
@@ -60,10 +55,7 @@
                     </div>
                     <div class="wrap__article-detail-content">
                         <div class="total-views">
-
-                            <p class="has-drop-cap-fluid">
-                                Inserir aqui o post saldo do CKEDITOR
-                            </p>
+                                {!!$post->description!!}
                         </div>
                     </div>
                     <!-- end content article detail -->
@@ -78,7 +70,7 @@
                             </li>
                             <li class="list-inline-item">
                                 <a href="#">
-                                    Inserir nome da categoria aqui
+                                    {{$category->name}}
                                 </a>
                         </ul>
                     </div>
@@ -89,11 +81,21 @@
                     <div class="wrap__profile">
                         <div class="wrap__profile-author">
                             <figure>
-                                <img src="images/placeholder/80x80.jpg" alt="" class="img-fluid rounded-circle">
-                                adicionar imagem do autor aqui
+                            
+                            <img
+                            alt="" 
+                            class="img-fluid rounded-circle"
+                            style="max-width: 64px"
+                                @if ($user->photo == null || $user->photo == "noimage.jpg")
+                                    src="{{asset('assets/img/noimage.jpg')}}"
+                                @else 
+                                    src="{{ asset('storage/users/'.$user->photo)}}"
+                                @endif
+                                >                                
+
                             </figure>
                             <div class="wrap__profile-author-detail">
-                                <h4>Nome do autor</h4>
+                                <h4>{{$user->name}}</h4>
                             </div>
                         </div>
                     </div>
@@ -318,8 +320,6 @@
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     </div>
