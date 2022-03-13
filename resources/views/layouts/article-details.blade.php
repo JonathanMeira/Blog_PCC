@@ -49,7 +49,7 @@
                             </li>
                             <li class="list-inline-item">
                                 <span>
-                                  {{$category->name}}
+                                    {{$category->name}}
                                 </span>
                             </li>
                         </ul>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="wrap__article-detail-content">
                         <div class="total-views">
-                                {!!$post->description!!}
+                            {!!$post->description!!}
                         </div>
                     </div>
                     <!-- end content article detail -->
@@ -88,17 +88,13 @@
                     <div class="wrap__profile">
                         <div class="wrap__profile-author">
                             <figure>
-                            
-                            <img
-                            alt="" 
-                            class="img-fluid rounded-circle"
-                            style="max-width: 64px"
-                                @if ($user->photo == null || $user->photo == "noimage.jpg")
-                                    src="{{asset('assets/img/noimage.jpg')}}"
-                                @else 
-                                    src="{{ asset('storage/users/'.$user->photo)}}"
+
+                                <img alt="" class="img-fluid rounded-circle" style="max-width: 64px" @if ($user->photo == null || $user->photo == "noimage.jpg")
+                                src="{{asset('assets/img/noimage.jpg')}}"
+                                @else
+                                src="{{ asset('storage/users/'.$user->photo)}}"
                                 @endif
-                                >                                
+                                >
 
                             </figure>
                             <div class="wrap__profile-author-detail">
@@ -111,35 +107,47 @@
                     <!-- comment -->
                     <!-- Comment  -->
                     <div id="comments" class="comments-area">
-                        <h3 class="comments-title">Inserir count dos Comments do post aqui:</h3>
+                        <h3 class="comments-title">
+                            Comentários({{count($comments)}}):
+                        </h3>
 
+                        @foreach($comments as $commentary)
                         <ol class="comment-list">
                             <li class="comment">
                                 <aside class="comment-body">
                                     <div class="comment-meta">
                                         <div class="comment-author vcard">
-                                            <img src="images/placeholder/80x80.jpg" class="avatar" alt="image">
-                                            <b class="fn">Sinmun</b>
-                                            <span class="says">says:</span>
+                                            <img
+                                            style="max-height: 32px"
+                                            @if ($commentary->user->photo == null || $commentary->user->photo == "noimage.jpg")
+                                            src="{{asset('assets/img/noimage.jpg')}}"
+                                            @else
+                                            src="{{ asset('storage/users/'.$commentary->user->photo)}}"
+                                            @endif
+                                            >
+                                            <b class="fn">
+                                                {{$commentary->user->name}}
+                                            </b>
+                                            <span class="says">:</span>
                                         </div>
 
                                         <div class="comment-metadata">
-                                            <a href="#">
-                                                <span>April 24, 2019 at 10:59 am</span>
-                                            </a>
+                                            <span>{{$commentary->created_at->format('d/m/Y')}}</span>
                                         </div>
                                     </div>
 
                                     <div class="comment-content">
-                                        <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown
-                                            printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        <p>
+                                            {{$commentary->text}}
+                                        </p>
                                     </div>
 
                                 </aside>
                             </li>
                         </ol>
+                        @endforeach
                         <div class="comment-respond" id='commentary'>
-                            <h3 class="comment-reply-title">Leave a Reply</h3>
+                            <h3 class="comment-reply-title">Deixe seu comentário</h3>
                             @if (\Session::has('success'))
                             <div class="alert alert-success">
                                 <ul>
@@ -147,20 +155,13 @@
                                 </ul>
                             </div>
                             @endif
-                             <form class="comment-form" method="post" action="{{ route('commentary.store', $post->id) }}" autocomplete="off">
+                            <form class="comment-form" method="post" action="{{ route('commentary.store', $post->id) }}" autocomplete="off">
                                 @csrf
-                                
-                                <p class="comment-notes">
-                                    <span id="email-notes">Your email address will not be published.</span>
-                                    Required fields are marked
-                                    <span class="required">*</span>
-                                </p>
                                 <p class="comment-form-comment">
-                                    <label for="comment">Comment</label>
-                                    <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525" required="required"></textarea>
+                                    <textarea name="comment" id="comment" cols="45" rows="5" maxlength="280" required="required"></textarea>
                                 </p>
                                 <p class="form-submit">
-                                    <input type="submit" name="submit" id="submit" class="submit" value="Post Comment">
+                                    <input type="submit" name="submit" id="submit" class="submit" value="Enviar comentário">
                                 </p>
                             </form>
                         </div>
@@ -172,15 +173,18 @@
 
                     <div class="related-article">
                         <h4>
-                            you may also like
+                            Sujestões com base no que você vê
                         </h4>
-
                         <div class="article__entry-carousel-three">
+                        @foreach($posts as $p)
+                            @if($p->id == $post->id)
+                                @continue
+                            @endif
                             <div class="item">
                                 <!-- Post Article -->
                                 <div class="article__entry">
                                     <div class="article__image">
-                                        <a href="#">
+                                        <a href="/article/{{$p->id}}">
                                             <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
                                         </a>
                                     </div>
@@ -188,152 +192,26 @@
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
                                                 <span class="text-primary">
-                                                    by david hall
+                                                    {{$p->user->name}}
                                                 </span>
                                             </li>
                                             <li class="list-inline-item">
                                                 <span>
-                                                    descember 09, 2016
+                                                    {{$p->created_at->format('d/m/Y')}}
                                                 </span>
                                             </li>
-
                                         </ul>
                                         <h5>
                                             <a href="#">
-                                                Maecenas accumsan tortor ut velit pharetra mollis.
+                                                {{$p->lead}}
                                             </a>
                                         </h5>
-
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
-                                <!-- Post Article -->
-                                <div class="article__entry">
-                                    <div class="article__image">
-                                        <a href="#">
-                                            <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="article__content">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="text-primary">
-                                                    by david hall
-                                                </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    descember 09, 2016
-                                                </span>
-                                            </li>
-
-                                        </ul>
-                                        <h5>
-                                            <a href="#">
-                                                Maecenas accumsan tortor ut velit pharetra mollis.
-                                            </a>
-                                        </h5>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <!-- Post Article -->
-                                <div class="article__entry">
-                                    <div class="article__image">
-                                        <a href="#">
-                                            <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="article__content">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="text-primary">
-                                                    by david hall
-                                                </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    descember 09, 2016
-                                                </span>
-                                            </li>
-
-                                        </ul>
-                                        <h5>
-                                            <a href="#">
-                                                Maecenas accumsan tortor ut velit pharetra mollis.
-                                            </a>
-                                        </h5>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <!-- Post Article -->
-                                <div class="article__entry">
-                                    <div class="article__image">
-                                        <a href="#">
-                                            <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="article__content">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="text-primary">
-                                                    by david hall
-                                                </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    descember 09, 2016
-                                                </span>
-                                            </li>
-
-                                        </ul>
-                                        <h5>
-                                            <a href="#">
-                                                Maecenas accumsan tortor ut velit pharetra mollis.
-                                            </a>
-                                        </h5>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <!-- Post Article -->
-                                <div class="article__entry">
-                                    <div class="article__image">
-                                        <a href="#">
-                                            <img src="images/placeholder/500x400.jpg" alt="" class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <div class="article__content">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <span class="text-primary">
-                                                    by david hall
-                                                </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <span>
-                                                    descember 09, 2016
-                                                </span>
-                                            </li>
-
-                                        </ul>
-                                        <h5>
-                                            <a href="#">
-                                                Maecenas accumsan tortor ut velit pharetra mollis.
-                                            </a>
-                                        </h5>
-
-                                    </div>
-                                </div>
-                            </div>
+                        @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
