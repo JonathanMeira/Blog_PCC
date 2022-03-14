@@ -50,7 +50,7 @@
 
     <!-- Header news -->
     <header class="bg-light">
-        <!-- Navbar  Top-->
+        <!-- Navbar  Top
         <div class="topbar d-none d-sm-block" style="background-color: {{config('app.color')}}">
             <div class="container p-1">
                 <div class="row">
@@ -79,38 +79,83 @@
                 </div>
             </div>
         </div>
+        -->
+        <div class="topbar d-none d-sm-block" style="background-color: {{config('app.color')}}">
+            <div class="container p-3">
+                <div class="row">
+                    <div class="col-md-2"  style="display: flex; align-items: center; justify-content: start;">
+                        <div class="topbar-left">
+                            <div class="topbar-text">
+                                <text class ="h5">
+                                    {{now()->format('d/m/Y')}}
+                                </text>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="col-md-7">
+                        <div class="topbar-left">
+                            <div class="topbar-text" style="display: flex; justify-content: center;">
+                                @if(config('app.logo') == null || config('app.logo')== 'noimage.jpg')
+                                    <img src="{{asset('assets/img/noimage.jpg')}}" style="max-height: 52px;">
+                                @else
+                                    <img src="{{asset('storage/system/'. config('app.logo'))}}" style="max-height: 52px;">
+                                @endif
+                                
+                            </div>
+                            <div class="topbar-text" style="display: flex; align-items: center; justify-content: center; padding-top:0.5em">
+                                <text class ="h4" style="color: #fff;">
+                                    {{config('app.name')}}
+                                </text>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3" style="display: flex; align-items: center; justify-content: end;">
+                        <div class="topbar-left">
+                            <div class="a topbar-text">
+                                <a class ="text h5 d-flex flex-row-reverse" href="{{route('login')}}" style="margin: 0;">
+                                    @if(auth()->user())
+                                        Acessar painel
+                                    @else
+                                        Login / Registrar
+                                    @endif
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- End Navbar Top  -->
         <!-- Navbar  -->
         <!-- Navbar menu  -->
-        <div class="navigation-wrap navigation-shadow bg-white" id="home">
-            <nav class="navbar navbar-hover navbar-expand-lg navbar-soft">
+        <div class="navigation-wrap bg-white" id="home">
+            <nav class="navbar navbar-expand-lg navbar-soft">
                 <div class="container">
-                    <div class="offcanvas-header">
-                        <div data-toggle="modal" data-target="#modal_aside_right" class="btn-md">
-                            <span class="navbar-toggler-icon"></span>
-                        </div>
-                    </div>
-                    <figure class="mb-0 mx-auto">
-                        <a href="/homepage-v1.html">
-                            <img src="images/placeholder/logo.jpg" alt="" class="img-fluid logo">
-                        </a>
-                    </figure>
-
-                    <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
-                        <ul class="navbar-nav ml-auto ">
-                            <li class="nav-item">
-                                <a class="nav-link" @if($pageSlug=='index' ) href="#home" @else href="{{route('index')}}" @endif>
-                                    <i class="fa fa-home"></i>
-                                    Home
+                    <div class="navbar-collapse" >   
+                        <ul class="navbar-nav ml-auto">
+                            <li class="dropdown nav-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                                    Categorias 
                                 </a>
+                                <ul class="dropdown-menu dropdown-navbar" style="max-height: 400px; overflow-y: auto;">
+                                    @foreach($categories as $category)
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" href="#{{$category->name}}"> {{$category->name}}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </li>
-                            @foreach($categories as $category)
-                                <li class="nav-item dropdown has-megamenu">
-                                    <a class="nav-link" href="#{{$category->name}}"> {{$category->name}}</a>
-                                </li>
-                            @endforeach
+                            <li class="separator d-lg-none"></li>
+                            <li class="nav-item">
+                                    <a class="nav-link" @if($pageSlug=='index' ) href="#home" @else href="{{route('index')}}" @endif>
+                                        <i class="fa fa-home"></i>
+                                        Home
+                                    </a>
+                            </li>
                         </ul>
                     </div>
+                </div>        
             </nav>
         </div>
         <!-- End Navbar menu  -->
