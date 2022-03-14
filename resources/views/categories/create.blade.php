@@ -10,6 +10,13 @@
         </ul>
     </div>
 @endif
+@if (\Session::has('error'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{!! \Session::get('error') !!}</li>
+        </ul>
+    </div>
+@endif
 
 <div class="col-md-8">
     <div class="card">
@@ -23,11 +30,6 @@
                 @include('alerts.success')
 
                 <div class="input-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
                     <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nome') }}">
                     @include('alerts.feedback', ['field' => 'name'])
                 </div>

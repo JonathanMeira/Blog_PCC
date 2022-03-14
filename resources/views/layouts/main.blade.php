@@ -52,7 +52,7 @@
     <header class="bg-light">
         <!-- Navbar  Top-->
         <div class="topbar d-none d-sm-block" style="background-color: {{config('app.color')}}">
-            <div class="container p-3">
+            <div class="container p-1">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="topbar-left">

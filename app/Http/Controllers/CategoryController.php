@@ -30,7 +30,8 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+            foreach($validator->getMessageBag()->toArray() as $error)
+            return back()->with('error', $error[0]);
         }
         //--- Validation Section Ends
 

@@ -25,29 +25,14 @@
                 @include('alerts.success')
 
                 <div class="input-group{{ $errors->has('title') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
                     <input type="text" name="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Titulo') }}" required>
                     @include('alerts.feedback', ['field' => 'title'])
                 </div>
                 <div class="input-group{{ $errors->has('lead') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
                     <input type="text" name="lead" class="form-control{{ $errors->has('lead') ? ' is-invalid' : '' }}" placeholder="{{ __('Lead') }}" required>
                     @include('alerts.feedback', ['field' => 'lead'])
                 </div> 
                 <div class="input-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="tim-icons icon-single-02"></i>
-                        </div>
-                    </div>
                     <select name="category_id" class="form-control{{ $errors->has('category_id') ? ' is-invalid' : '' }}" placeholder="{{ __('Categoria') }}" required>
                         <option value=""> Selecione... </option>
                         @foreach($categories as $category)
