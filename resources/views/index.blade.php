@@ -395,7 +395,7 @@
             @php
                 $categoryPosts = $category->posts;
             @endphp
-    <div class="container" id="{{$category->name}}">
+    <div class="container" id="{{$category->name}}" style="margin-top: 4em;">
         <div class="row">
             <div class="col-md-12">
                 <aside class="wrapper__list__article">
