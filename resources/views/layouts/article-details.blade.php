@@ -147,7 +147,9 @@
                                             {{$commentary->text}}
                                         </p>
                                     </div>
-
+                                    <div class="comment-icons">
+                                        <a href=""><i class="fa fa-trash fa-lg" style="color: {{config('app.color')}};"></i></a>
+                                    </div>
                                 </aside>
                             </li>
                         </ol>
