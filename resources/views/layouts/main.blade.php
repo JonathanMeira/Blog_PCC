@@ -173,12 +173,7 @@
                     @yield('content')
                 </div>
             </div>
-            <div
-            class="p-3"
-            style="
-            background: {{config('app.color')}};
-            color: white;"
-            >
+            <div class="p-3" style="background: {{config('app.color')}}; color: white;">
                 @include('layouts.footer')
             </div>
         </div>
