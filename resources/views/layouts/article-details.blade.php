@@ -30,13 +30,12 @@
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <figure class="image-profile">
-                                    <img 
-                                    @if ($user->photo == null || $user == "noimage.jpg")
-                                        src="{{asset('assets/img/noimage.jpg')}}"
+                                    <img @if ($user->photo == null || $user == "noimage.jpg")
+                                    src="{{asset('assets/img/noimage.jpg')}}"
                                     @else
-                                        src="{{ asset('storage/users/'.$user->photo)}}"
+                                    src="{{ asset('storage/users/'.$user->photo)}}"
                                     @endif
-                                >
+                                    >
                                 </figure>
                             </li>
                             <li class="list-inline-item">
@@ -123,9 +122,7 @@
                                 <aside class="comment-body">
                                     <div class="comment-meta">
                                         <div class="comment-author vcard">
-                                            <img
-                                            style="max-height: 32px"
-                                            @if ($commentary->user->photo == null || $commentary->user->photo == "noimage.jpg")
+                                            <img style="max-height: 32px" @if ($commentary->user->photo == null || $commentary->user->photo == "noimage.jpg")
                                             src="{{asset('assets/img/noimage.jpg')}}"
                                             @else
                                             src="{{ asset('storage/users/'.$commentary->user->photo)}}"
@@ -138,10 +135,20 @@
                                         </div>
 
                                         <div class="comment-metadata">
-                                            <span>{{$commentary->created_at->format('d/m/Y')}}</span>
+                                            <span>{{$commentary->created_at->format('d/m/Y')}}
+                                                @if(!Auth::guest() && $commentary->user_id == auth()->user()->id)
+                                                <span class="comment-icons">
+                                                    <form method="POST" action="/commentary/delete/{{$commentary->id}}" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="submit">>
+                                                            <i class="fa fa-trash fa-lg" style="color: {{config('app.color')}};"></i>
+                                                        </input>
+                                                    </form>
+                                                </span>
+                                            </span>
+                                            @endif
                                         </div>
                                     </div>
-
                                     <div class="comment-content">
                                         <p>
                                             {{$commentary->text}}
@@ -182,18 +189,16 @@
                             Sugestões com base no que você vê
                         </h4>
                         <div class="article__entry-carousel-three">
-                        @foreach($posts as $p)
+                            @foreach($posts as $p)
                             @if($p->id == $post->id)
-                                @continue
+                            @continue
                             @endif
                             <div class="item">
                                 <!-- Post Article -->
                                 <div class="article__entry">
                                     <div class="article__image">
                                         <a href="/article/{{$p->id}}">
-                                            <img 
-                                            class="img-fluid"
-                                            @if ($p->photo == null || $p->photo == "noimage.jpg")
+                                            <img class="img-fluid" @if ($p->photo == null || $p->photo == "noimage.jpg")
                                             src="{{asset('assets/img/noimage.jpg')}}"
                                             @else
                                             src="{{ asset('storage/posts/'.$p->photo)}}"
@@ -222,7 +227,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>

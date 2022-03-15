@@ -142,7 +142,9 @@
                                 <ul class="dropdown-menu dropdown-navbar" style="max-height: 400px; overflow-y: auto;">
                                     @foreach($categories as $category)
                                         <li class="nav-item">
-                                            <a class="dropdown-item" href="#{{$category->name}}"> {{$category->name}}</a>
+                                            <a 
+                                            class="dropdown-item" 
+                                            href="#{{$category->name}}"> {{$category->name}}</a>
                                         </li>
                                     @endforeach
                                 </ul>
