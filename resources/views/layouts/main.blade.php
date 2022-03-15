@@ -134,6 +134,7 @@
                 <div class="container">
                     <div class="navbar-collapse" >   
                         <ul class="navbar-nav ml-auto">
+                            @if($pageSlug == "index")
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                                     Categorias 
@@ -146,6 +147,7 @@
                                     @endforeach
                                 </ul>
                             </li>
+                            @endif
                             <li class="separator d-lg-none"></li>
                             <li class="nav-item">
                                     <a class="nav-link" @if($pageSlug=='index' ) href="#home" @else href="{{route('index')}}" @endif>
