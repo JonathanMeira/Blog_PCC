@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/', ['as' => 'index', 'uses' => 'App\Http\Controllers\BlogController@index']);
-Route::get('/article-details', ['as' => 'article-details', 'uses' => 'App\Http\Controllers\DetailsController@index']);
-Route::get('/category', ['as' => 'category', 'uses' => 'App\Http\Controllers\CategoryPageController@index']);
-
+Route::get('/article/{id}', ['as' => 'article-details', 'uses' => 'App\Http\Controllers\DetailsController@index']);
+Route::get('/commentary/delete/{id}',['as' => 'commentary.delete', 'uses' => 'App\Http\Controllers\CommentaryController@delete']);
 
 Auth::routes();
             
@@ -38,7 +37,7 @@ Route::prefix('user')
 ->group( function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-
+	Route::post('/article/{id}/commentary',['as' => 'commentary.store', 'uses' => 'App\Http\Controllers\CommentaryController@store']);
 });
 
 

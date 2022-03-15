@@ -25,7 +25,10 @@ class HomeController extends Controller
         if(auth()->user()->role == 'client'){
             return view('profile.edit');
         }
-
-        return view('posts.index', ['posts' => $model->simplePaginate(15)]);
+        
+        if(auth()->user()->role == 'admin')
+            return view('posts.index', ['posts' => $model->simplePaginate(15)]);
+        $posts = auth()->user()->posts();
+        return view('posts.index', ['posts' => $posts->simplePaginate(15)]);
     }
 }

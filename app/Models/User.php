@@ -49,4 +49,17 @@ class User extends Authenticatable
         $role = (array)$role;
         return in_array($this->role, $role);
     }
+
+
+    public function posts()
+    {
+        return $this->hasMany(Posts::class);
+    }
+
+    public function commentary()
+    {
+        return $this->hasMany(Commentary::class);
+    }
+
+
 }

@@ -1,3 +1,55 @@
+## <p align="center">Esse projeto foi construído, com ❤, pelos seguintes membros</p>
+
+<p align="center">
+<a href="https://github.com/JonathanMeira" target="_blank">Jonathan Meira</a> |
+<a href="https://github.com/guiiivale" target="_blank">Guilherme Vale</a> |
+<a href="https://github.com/gulama14" target="_blank">Gustavo Benites</a> |
+<a href="https://github.com/pauloportugal1" target="_blank">Paulo Portugal</a>
+</p>
+
+
+## <p align="center">Como instalar e configurar o ambiente interno para rodar o sistema</p>
+- 1°: Ter instalado o composer na sua máquina;
+- 2°: Ter instalado o MySQL na sua máquina:
+- 3°: Abrir um terminar de comando na pasta onde está localizada o projeto;
+- 4°: Copiar o .env.example para um arquivo .env e gerar uma key para o sistema;
+    ```ruby
+        cp .env.example .env
+        php artisan key:generate
+    ```
+- 5°: Criar um banco de dados no seu gerenciador de banco de dados e setar o nome, e senha dele nas seguintes configurações de ambiente do arquivo .env:
+    ```ruby
+        DB_CONNECTION=
+        DB_HOST=
+        DB_PORT=
+        DB_DATABASE=
+        DB_USERNAME=
+        DB_PASSWORD=
+    ```
+- 6°: Baixar os pacotes de dependência do projeto:
+    ```ruby
+        composer i
+    ```
+- 7°: Rodar as migrações para o banco de dados previamente criado no 4° passo:
+    ```ruby
+        php artisan migrate
+    ```
+- 8°: Rodar a seed inicial para que o sistema funcione:
+    ```ruby
+        php artisan db:seed
+    ```
+- 9°: Rodar a seed inicial para que o sistema funcione:
+    ```ruby
+        php artisan serve
+    ```
+- 9°: Utilizar o usuário Super Admin criado na seed para acessar o painel Administrador:
+    ```ruby
+        Login: guigato62@gmail.com
+        Senha: 1234
+    ```
+- 10°: <b>Usufruir do sistema ❤.</b>
+
+## Laravel
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
