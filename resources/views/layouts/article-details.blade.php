@@ -138,11 +138,12 @@
                                             <span>{{$commentary->created_at->format('d/m/Y')}}
                                                 @if(!Auth::guest() && $commentary->user_id == auth()->user()->id)
                                                 <span class="comment-icons">
-                                                    <form method="POST" action="/commentary/delete/{{$commentary->id}}" enctype="multipart/form-data">
+                                                    <form method="POST" id="delete-comment" action="/commentary/delete/{{$commentary->id}}" enctype="multipart/form-data">
                                                         @csrf
-                                                        <input type="submit">>
-                                                            <i class="fa fa-trash fa-lg" style="color: {{config('app.color')}};"></i>
-                                                        </input>
+                                                            <i class="fa fa-trash fa-lg" 
+                                                            style="color: {{config('app.color')}}; cursor:pointer;"
+                                                            onclick="event.preventDefault();  document.getElementById('delete-comment').submit();"
+                                                            ></i>
                                                     </form>
                                                 </span>
                                             </span>
